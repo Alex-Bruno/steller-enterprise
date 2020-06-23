@@ -1,0 +1,44 @@
+<header id="home">
+    <div class="row">
+        <div class="col-4">
+            <img class="img-fluid ml-2" src="{{ asset('/build/images/logo-white.png') }}" width="70">
+        </div>
+        <div class="col-8">
+
+            <nav class="navbar navbar-expand-lg navbar-dark mt-2 float-right">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        {% if app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link text-info" href="{{ path('app_login') }}">Logout</a>
+                        </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link text-info" href="{{ path('app_login') }}">Sign In</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+
+        </div>
+    </div>
+</header>

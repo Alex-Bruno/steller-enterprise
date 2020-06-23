@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="Personal Page.">
+    <meta name="author" content="Steller">
+
+    <title>{% block title %}Steller{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    <link rel="icon" href="{{ asset('build/images/logo.png') }}" />
+</head>
+<body>
+{{ include('components/navabar.html.twig') }}
+{% block body %}{% endblock %}
+<footer class="text-center bg-light border-top">
+    <div class="footer-content">
+        <span id="enterprise-name">STELLER</span>&nbsp;|
+        <span id="copyright">COPYRIGHT © 2020 - ALL RIGHTS RESERVED.</span>
+    </div>
+</footer>
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    <script src="{{ asset('build/lib/jquery.min.js') }}"></script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,53 @@
+@import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno&family=Roboto&family=Ubuntu:wght@700&display=swap');
+
+html{
+  height: 100%;
+}
+
+body {
+  background: white url("/build/images/bg-eagle.png");
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+}
+
+#home {
+  background: rgba(17, 207, 214, 0.5) url("/build/images/bg.jpg");
+}
+
+.nav-link {
+  font-family: 'MuseoModerno', cursive;
+  font-size: 15pt;
+  font-weight: 700;
+}
+
+#enterprise-name {
+  color: rgba(50, 50, 200, 0.8);
+  font-weight: bold;
+}
+
+#products .header h2{
+  font-size: 25pt;
+  font-weight: bold;
+}
+
+#products .header p{
+  font-size: 22pt;
+}
+
+main {
+  margin-bottom: 100px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 80px;
+  padding: 10px;
+  margin: 0;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.footer-content {
+  margin-top: 20px;
+}
