@@ -1,4 +1,7 @@
 {
+    "behat/transliterator": {
+        "version": "v1.3.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -80,6 +83,9 @@
     },
     "egulias/email-validator": {
         "version": "2.1.18"
+    },
+    "gedmo/doctrine-extensions": {
+        "version": "v2.4.41"
     },
     "laminas/laminas-code": {
         "version": "3.4.1"
