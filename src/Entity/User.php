@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\traits\EntityTrait;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -11,6 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    use EntityTrait;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -55,15 +57,10 @@ class User implements UserInterface
     /**
      * User constructor.
      */
-    public function __construct($type = null)
+    public function __construct()
     {
-        if ($type == 'ADMINISTRATOR') {
-            $this->type = 'ADMINISTRATOR';
-            $this->roles = ['ROLE_ADMINISTRATOR'];
-        } else {
-            $this->type = 'CLIENT';
-            $this->roles = ['ROLE_CLIENT'];
-        }
+        $this->created = new \DateTime('now');
+        $this->updated = new \DateTime('now');
     }
 
 
@@ -116,12 +113,12 @@ class User implements UserInterface
     /**
      * @see UserInterface
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return (string)$this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(?string $password): self
     {
         $this->password = $password;
 
@@ -158,6 +155,12 @@ class User implements UserInterface
      */
     public function setType(?string $type): void
     {
+        $type = strtoupper($type);
+        if($type == 'ADMINISTRATOR') {
+            $this->roles =['ROLE_ADMIN'];
+        } else {
+            $this->roles =['ROLE_CLIENT'];
+        }
         $this->type = $type;
     }
 

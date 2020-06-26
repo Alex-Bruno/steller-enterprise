@@ -1,0 +1,44 @@
+{{ form_start(form) }}
+
+<div class="row form mt-2">
+    <div class="col-8 offset-2">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+    </div>
+</div>
+
+<div class="row form mt-2">
+    <div class="col-8 offset-2">
+        {{ form_label(form.phone) }}
+        {{ form_widget(form.phone) }}
+    </div>
+</div>
+
+<div class="row form mt-2">
+    <div class="col-8 offset-2">
+        {{ form_label(form.type) }}
+        {{ form_widget(form.type) }}
+    </div>
+</div>
+
+<div class="row form mt-2">
+    <div class="col-8 offset-2">
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+    </div>
+</div>
+
+<div class="row form mt-2">
+    <div class="col-8 offset-2">
+        {{ form_label(form.password) }}
+        {{ form_widget(form.password) }}
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-8 offset-2">
+        <button class="btn btn-success">{{ button_label|default('Register') }}</button>
+    </div>
+</div>
+
+{{ form_end(form) }}
