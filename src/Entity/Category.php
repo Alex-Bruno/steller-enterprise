@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\traits\EntityEnabledTrait;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Category
 {
+    use EntityEnabledTrait, EntityEnabledTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

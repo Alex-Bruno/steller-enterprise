@@ -26,10 +26,25 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
+                        {% if app.user and app.user.granted('ROLE_ADMIN') %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('user_index') }}">Users</a>
+                            </li>
+                        {% endif %}
+                        {% if app.user and app.user.granted('ROLE_ADMIN') %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('tags_index') }}">Tags</a>
+                            </li>
+                        {% endif %}
+                        {% if app.user and app.user.granted('ROLE_ADMIN') %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('category_index') }}">Categories</a>
+                            </li>
+                        {% endif %}
                         {% if app.user %}
-                        <li class="nav-item">
-                            <a class="nav-link text-info" href="{{ path('app_logout') }}">Logout</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-info" href="{{ path('app_logout') }}">Logout</a>
+                            </li>
                         {% else %}
                             <li class="nav-item">
                                 <a class="nav-link text-info" href="{{ path('app_login') }}">Sign In</a>

@@ -2,17 +2,22 @@
 
 namespace App\Entity;
 
+use App\Entity\traits\EntityEnabledTrait;
 use App\Entity\traits\EntityTrait;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="user.unique")
  */
 class User implements UserInterface
 {
-    use EntityTrait;
+    use EntityTrait, EntityEnabledTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -23,17 +28,20 @@ class User implements UserInterface
     /**
      * @var string
      * @ORM\Column(name="name", type="string", nullable=false)
+     * @Assert\NotBlank(message="user.blank_name")
      */
     private $name;
 
     /**
      * @var string
      * @ORM\Column(name="phone", type="string", length=14, nullable=false)
+     * @Assert\NotBlank(message="user.blank_phone")
      */
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message="user.blank_email")
      */
     private $email;
 
@@ -51,6 +59,7 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="user.blank_password")
      */
     private $password;
 
@@ -61,6 +70,7 @@ class User implements UserInterface
     {
         $this->created = new \DateTime('now');
         $this->updated = new \DateTime('now');
+        $this->enabled = true;
     }
 
 
@@ -156,10 +166,10 @@ class User implements UserInterface
     public function setType(?string $type): void
     {
         $type = strtoupper($type);
-        if($type == 'ADMINISTRATOR') {
-            $this->roles =['ROLE_ADMIN'];
+        if ($type == 'ADMINISTRATOR') {
+            $this->roles = ['ROLE_ADMIN'];
         } else {
-            $this->roles =['ROLE_CLIENT'];
+            $this->roles = ['ROLE_CLIENT'];
         }
         $this->type = $type;
     }
@@ -196,5 +206,11 @@ class User implements UserInterface
         $this->phone = $res = preg_replace("/[^0-9]/", "", $phone);;
     }
 
-
+    public function isGranted($role)
+    {
+        if (in_array($role, $this->roles)) {
+            return true;
+        }
+        return false;
+    }
 }

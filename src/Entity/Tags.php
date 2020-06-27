@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\traits\EntityEnabledTrait;
 use App\Repository\TagsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tags
 {
+    use EntityEnabledTrait, EntityEnabledTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

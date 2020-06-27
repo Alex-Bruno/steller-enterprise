@@ -1,0 +1,6 @@
+user:
+  unique: Ya existe un usuario con este correo electrónico!
+  blank_name: Introduzca su nombre!
+  blank_phone: Ingresa tu teléfono!
+  blank_email: Introduce tu correo electrónico!
+  blank_password: Informa tu contraseña!

@@ -16,9 +16,15 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, ['attr' => ['class' => 'form-control']])
-            ->add('phone', TextType::class, ['attr' => ['class' => 'form-control phone-mask']])
-            ->add('email', EmailType::class, ['attr' => ['class' => 'form-control']])
+            ->add('name', TextType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Enter a name'],
+            ])
+            ->add('phone', TextType::class, [
+                'attr' => ['class' => 'form-control phone-mask', 'placeholder' => 'Enter a phone']
+            ])
+            ->add('email', EmailType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Enter a valid e-mail']
+            ])
             ->add('type', ChoiceType::class, [
                     'attr' => ['class' => 'form-control'],
                     'choices' => [
@@ -26,7 +32,9 @@ class UserType extends AbstractType
                         'Client' => 'CLIENT',
                     ]]
             )
-            ->add('password', PasswordType::class, ['attr' => ['class' => 'form-control'], 'required' => false]);
+            ->add('password', PasswordType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Set your password'], 'required' => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

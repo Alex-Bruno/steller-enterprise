@@ -14,7 +14,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-8">
-                    <h1 class="h1">User index</h1>
+                    <h1 class="h1">Users</h1>
                 </div>
                 <div class="col-4">
                     <a class="float-right btn btn-info m-2" href="{{ path('user_new') }}">
@@ -44,7 +44,7 @@
                             <td><span class="text-capitalize">{{ user.type }}</span></td>
                             <td>{{ user.created | date('m/d/Y H:i') }}</td>
                             <td>
-                                <div class="dropdown">
+                                <div class="dropdown float-right">
                                     <button class="btn btn-secondary dropdown-toggle" type="button"
                                             id="dropdownMenuButton"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

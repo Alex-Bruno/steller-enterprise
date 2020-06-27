@@ -21,7 +21,7 @@ class TagsController extends AbstractController
     public function index(TagsRepository $tagsRepository): Response
     {
         return $this->render('admin/tags/index.html.twig', [
-            'tags' => $tagsRepository->findAll(),
+            'tags' => $tagsRepository->findBy(['enabled' => true]),
         ]);
     }
 
@@ -85,7 +85,8 @@ class TagsController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$tag->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($tag);
+            $tag->setEnabled(false);
+            $entityManager->persist($tag);
             $entityManager->flush();
         }
 

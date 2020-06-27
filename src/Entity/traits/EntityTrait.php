@@ -5,6 +5,7 @@ namespace App\Entity\traits;
 
 
 use App\Entity\User;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 trait EntityTrait
 {

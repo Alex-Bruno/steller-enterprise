@@ -22,7 +22,7 @@ class UserController extends AbstractController
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('admin/user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $userRepository->findBy(['enabled' => true]),
         ]);
     }
 
@@ -37,6 +37,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $entityManager = $this->getDoctrine()->getManager();
             $user->setPassword($passEncoder->encodePassword($user, $user->getPassword()));
             $entityManager->persist($user);
@@ -71,7 +72,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if($user->getPassword()) {
+            if ($user->getPassword()) {
                 $user->setPassword($passEncoder->encodePassword($user, $user->getPassword()));
             } else {
                 $user->setPassword($password);
@@ -94,7 +95,8 @@ class UserController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($user);
+            $user->setEnabled(false);
+            $entityManager->persist($user);
             $entityManager->flush();
         }
 

@@ -1,0 +1,6 @@
+user:
+  unique: Já existe um usuário com este e-mail!
+  blank_name: Informe seu nome!
+  blank_phone: Informe seu telefone!
+  blank_email: Informe seu e-mail!
+  blank_password: Informe um nome para o usuário!

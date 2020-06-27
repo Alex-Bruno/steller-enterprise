@@ -1,11 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Tags{% endblock %}
-
+{% block title %}New  Tag{% endblock %}
 {% block body %}
-    <h1>Create new Tags</h1>
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-8">
+                    <h1 class="h1">New Tag</h1>
+                </div>
+                <div class="col-4">
+                    <a class="float-right btn btn-light m-2" href="{{ path('tags_index') }}">
+                        <i class="fa fa-arrow-left"></i> Back to list
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            {{ include('admin/tags/_form.html.twig') }}
+        </div>
+    </div>
 
-    {{ include('admin/tags/_form.html.twig') }}
-
-    <a href="{{ path('tags_index') }}">back to list</a>
 {% endblock %}
