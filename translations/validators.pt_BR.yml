@@ -4,3 +4,8 @@ user:
   blank_phone: Informe seu telefone!
   blank_email: Informe seu e-mail!
   blank_password: Informe um nome para o usuário!
+  invalid_password_lengh: A senha deve ter no mínimo 8 caracteres!
+  invalid_password_numeric: A senha deve ter pelo menos uma letra ou um caractere especial!
+
+tag:
+  blank_name: Informe um nome para a tag!

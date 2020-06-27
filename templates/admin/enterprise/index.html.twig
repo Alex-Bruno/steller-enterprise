@@ -1,26 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
-{% block stylesheets %}
-    {{ parent() }}
-    <style>
-        footer {
-            position: relative !important;
-        }
-    </style>
-{% endblock %}
+{% block title %}Enterprise{% endblock %}
+
 {% block body %}
     <div class="card">
         <div class="card-header">
             <div class="row">
                 <div class="col-8">
-                    <h1 class="h1">Users</h1>
+                    <h1 class="h1">My Enterprise</h1>
                 </div>
-                <div class="col-4">
-                    <a class="float-right btn btn-info m-2" href="{{ path('user_new') }}">
-                        <i class="fa fa-plus"></i> Create new
-                    </a>
-                </div>
+                {% if enterprises | length == 0 %}
+                    <div class="col-4">
+                        <a class="float-right btn btn-info m-2" href="{{ path('enterprise_new') }}">
+                            <i class="fa fa-plus"></i> Create new
+                        </a>
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="card-body">
@@ -30,19 +25,21 @@
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Email</th>
-                        <th>Type</th>
-                        <th>Created</th>
+                        <th>Name</th>
+                        <th>CNPJ</th>
+                        <th>Logo</th>
+                        <th>Color</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for user in users %}
+                    {% for enterprise in enterprises %}
                         <tr>
-                            <td>{{ user.id }}</td>
-                            <td>{{ user.email }}</td>
-                            <td><span class="text-capitalize">{{ user.type }}</span></td>
-                            <td>{{ user.created | date('m/d/Y H:i') }}</td>
+                            <td>{{ enterprise.id }}</td>
+                            <td>{{ enterprise.name }}</td>
+                            <td>{{ enterprise.cnpj }}</td>
+                            <td>{{ enterprise.logo }}</td>
+                            <td>{{ enterprise.color }}</td>
                             <td>
                                 <div class="dropdown float-right">
                                     <button class="btn btn-secondary dropdown-toggle" type="button"
@@ -52,10 +49,10 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item"
-                                           href="{{ path('user_show', {'id': user.id}) }}">
+                                           href="{{ path('enterprise_show', {'id': enterprise.id}) }}">
                                             <i class="fa fa-eye"></i> Show
                                         </a>
-                                        <a class="dropdown-item" href="{{ path('user_edit', {'id': user.id}) }}">
+                                        <a class="dropdown-item" href="{{ path('enterprise_edit', {'id': enterprise.id}) }}">
                                             <i class="fa fa-pencil"></i> Edit
                                         </a>
                                     </div>
@@ -64,7 +61,7 @@
                         </tr>
                     {% else %}
                         <tr>
-                            <td colspan="5">No records found</td>
+                            <td colspan="6">No records found</td>
                         </tr>
                     {% endfor %}
                     </tbody>

@@ -4,3 +4,8 @@ user:
   blank_phone: Ingresa tu teléfono!
   blank_email: Introduce tu correo electrónico!
   blank_password: Informa tu contraseña!
+  invalid_password_lengh: La contraseña debe tener al menos 8 caracteres!
+  invalid_password_numeric: La contraseña debe tener al menos una letra o un carácter especial!
+
+tag:
+  blank_name: Ingrese un nombre para la etiqueta!

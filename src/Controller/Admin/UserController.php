@@ -5,7 +5,9 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,7 +31,7 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
      */
-    public function new(Request $request, UserPasswordEncoderInterface $passEncoder): Response
+    public function new(Request $request, UserPasswordEncoderInterface $passEncoder, UserService $service): Response
     {
         $user = new User();
         $user->setType('ADMINISTRATOR');
@@ -37,6 +39,15 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $isValid = $service->verificPassword($user->getPassword());
+            if ($isValid !== true) {
+                $form->get('password')->addError(new FormError($isValid));
+                return $this->render('admin/user/new.html.twig', [
+                    'user' => $user,
+                    'form' => $form->createView(),
+                ]);
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $user->setPassword($passEncoder->encodePassword($user, $user->getPassword()));
@@ -65,18 +76,28 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user, UserPasswordEncoderInterface $passEncoder): Response
+    public function edit(Request $request, User $user, UserPasswordEncoderInterface $passEncoder, UserService $service): Response
     {
         $password = $user->getPassword();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             if ($user->getPassword()) {
+                $isValid = $service->verificPassword($user->getPassword());
+                if ($isValid !== true) {
+                    $form->get('password')->addError(new FormError($isValid));
+                    return $this->render('admin/user/edit.html.twig', [
+                        'user' => $user,
+                        'form' => $form->createView(),
+                    ]);
+                }
                 $user->setPassword($passEncoder->encodePassword($user, $user->getPassword()));
             } else {
                 $user->setPassword($password);
             }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('user_index');

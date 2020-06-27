@@ -26,9 +26,13 @@ class Category
     private $name;
 
     /**
-     * @ORM\Column(type="json")
+     * Category constructor.
      */
-    private $tags = [];
+    public function __construct()
+    {
+        $this->enabled = true;
+    }
+
 
     public function getId(): ?int
     {
@@ -43,18 +47,6 @@ class Category
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getTags(): ?array
-    {
-        return $this->tags;
-    }
-
-    public function setTags(array $tags): self
-    {
-        $this->tags = $tags;
 
         return $this;
     }

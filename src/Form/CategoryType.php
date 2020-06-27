@@ -14,9 +14,8 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Enter a name']]
-            )
-        ;
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Enter a name']
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New  Category{% endblock %}
+{% block title %}New  Enterprise{% endblock %}
 {% block body %}
     <div class="card">
         <div class="card-header">
             <div class="row">
                 <div class="col-8">
-                    <h1 class="h1">New Category</h1>
+                    <h1 class="h1">New Enterprise</h1>
                 </div>
                 <div class="col-4">
-                    <a class="float-right btn btn-light m-2" href="{{ path('tags_index') }}">
+                    <a class="float-right btn btn-light m-2" href="{{ path('enterprise_index') }}">
                         <i class="fa fa-arrow-left"></i> Back to list
                     </a>
                 </div>
             </div>
         </div>
         <div class="card-body">
-            {{ include('admin/category/_form.html.twig') }}
+            {{ include('admin/enterprise/_form.html.twig') }}
         </div>
     </div>
 
