@@ -1,0 +1,12 @@
+<div class="row collection-protototype">
+    <div class="col {% if form.label.vars.errors|length %} has-error {% endif %}">
+        {{ form_label(form.label) }}
+        {{ form_widget(form.label) }}
+        {{ form_errors(form.label) }}
+    </div>
+    <div class="col {% if form.text.vars.errors|length %} has-error {% endif %}">
+        {{ form_label(form.text) }}
+        {{ form_widget(form.text) }}
+        {{ form_errors(form.text) }}
+    </div>
+</div>

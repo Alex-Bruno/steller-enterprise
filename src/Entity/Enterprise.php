@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EnterpriseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +37,12 @@ class Enterprise
      * @ORM\Column(type="string", length=255)
      */
     private $color;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="App\Entity\Contact", cascade={"persist"})
+     */
+    private $contacts;
 
     public function getId(): ?int
     {
@@ -100,6 +107,22 @@ class Enterprise
     public function setColor($color): void
     {
         $this->color = $color;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    /**
+     * @param ArrayCollection $contacts
+     */
+    public function setContacts($contacts): void
+    {
+        $this->contacts = $contacts;
     }
 
 }

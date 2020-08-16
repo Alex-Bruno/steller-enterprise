@@ -1,6 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}New  Enterprise{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        footer {
+            position: relative !important;
+        }
+    </style>
+{% endblock %}
 {% block body %}
     <div class="card">
         <div class="card-header">

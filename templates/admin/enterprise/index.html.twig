@@ -29,7 +29,7 @@
                         <th>CNPJ</th>
                         <th>Logo</th>
                         <th>Color</th>
-                        <th>Actions</th>
+                        <th class="text-right">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -38,8 +38,8 @@
                             <td>{{ enterprise.id }}</td>
                             <td>{{ enterprise.name }}</td>
                             <td>{{ enterprise.cnpj }}</td>
-                            <td>{{ enterprise.logo }}</td>
-                            <td>{{ enterprise.color }}</td>
+                            <td><img src="{{ asset('uploads/images/' ~ enterprise.logo) }}" class="img-thumbnail" width="30" /></td>
+                            <td><div style="width: 30px; height: 30px; background-color: {{ enterprise.color }}"></div></td>
                             <td>
                                 <div class="dropdown float-right">
                                     <button class="btn btn-secondary dropdown-toggle" type="button"

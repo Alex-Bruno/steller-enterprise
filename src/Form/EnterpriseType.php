@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Enterprise;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -42,6 +44,17 @@ class EnterpriseType extends AbstractType
                     'attr' => ['class' => 'load-image-preview form-control']
                 ]
             )
+            ->add('color', ColorType::class, [
+                'attr' => ['class' => 'load-image-preview form-control']
+            ])
+            ->add('contacts', CollectionType::class, [
+                'entry_type' => ContactType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'required' => false,
+                'label_attr' => ['class' => 'd-none']
+            ])
         ;
     }
 

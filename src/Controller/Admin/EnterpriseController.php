@@ -22,20 +22,30 @@ class EnterpriseController extends AbstractController
     public function index(EnterpriseRepository $enterpriseRepository): Response
     {
         return $this->render('admin/enterprise/index.html.twig', [
-            'enterprises' => $enterpriseRepository->findOneBy([]),
+            'enterprises' => $enterpriseRepository->findAll(),
         ]);
     }
 
     /**
      * @Route("/new", name="enterprise_new", methods={"GET","POST"})
      */
-    public function new(Request $request, FileUploader $service): Response
+    public function new(Request $request, FileUploader $service, EnterpriseRepository $enterpriseRepository): Response
     {
+        $items = $enterpriseRepository->findAll();
+        if(count($items)) {
+            $this->denyAccessUnlessGranted('Enterprise is defined');
+            return $this->redirectToRoute('enterprise_index');
+        }
         $enterprise = new Enterprise();
         $form = $this->createForm(EnterpriseType::class, $enterprise);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if($form and $form['logo'] and $form['logo']->getData()) {
+                $image = $form['logo']->getData();
+                $image = $service->upload($image);
+                $enterprise->setLogo($image);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($enterprise);
             $entityManager->flush();

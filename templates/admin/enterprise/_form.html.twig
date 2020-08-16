@@ -1,4 +1,62 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+<div class="row mb-2">
+    <div class="col-12">
+        <h3>Enterprise</h3>
+    </div>
+    <div class="col-12 {% if form.name.vars.errors|length %} has-error {% endif %}">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col {% if form.cnpj.vars.errors|length %} has-error {% endif %}">
+        {{ form_label(form.cnpj) }}
+        {{ form_widget(form.cnpj) }}
+        {{ form_errors(form.cnpj) }}
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col {% if form.logo.vars.errors|length %} has-error {% endif %}">
+        {{ form_label(form.logo) }}
+        {{ form_widget(form.logo) }}
+        {{ form_errors(form.logo) }}
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col {% if form.color.vars.errors|length %} has-error {% endif %}">
+        {{ form_label(form.color) }}
+        {{ form_widget(form.color) }}
+        {{ form_errors(form.color) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h3>Contacts</h3>
+    </div>
+    <div class="col-12">
+        <ul class="collections"
+            data-prototype="{{ include('admin/enterprise/_contactPrototype.html.twig', {'form': form.contacts.vars.prototype}) | escape('html') }}">
+            {% for contact in form.contacts %}
+                <li class="mt-2">
+                    <div class="row videos-protototype">
+                        <div class="col {% if contact.label.vars.errors|length %} has-error {% endif %}">
+                            {{ form_label(contact.label) }}
+                            {{ form_widget(contact.label) }}
+                            {{ form_errors(contact.label) }}
+                        </div>
+                        <div class="col {% if contact.label.vars.errors|length %} has-error {% endif %}">
+                            {{ form_label(contact.text) }}
+                            {{ form_widget(contact.text) }}
+                            {{ form_errors(contact.text) }}
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<button class="btn btn-success">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
