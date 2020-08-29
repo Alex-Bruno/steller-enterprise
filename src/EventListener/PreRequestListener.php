@@ -6,6 +6,7 @@ namespace App\EventListener;
 use App\Entity\Requests;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Event\ControllerArgumentsEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\UsageTrackingTokenStorage;
 
@@ -75,6 +76,15 @@ class PreRequestListener
                 $em->flush();
             }
         } catch (\Exception $e) {
+
+        }
+
+        try {
+            $em = $this->createNewEntityManager();
+            $enterprise = $em->getRepository('App:Enterprise')->findOneBy([]);
+            $session = new Session();
+            $session->set('enterprise', $enterprise);
+        }catch (\Exception $e) {
 
         }
     }

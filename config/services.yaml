@@ -31,6 +31,11 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.controller_arguments }
 
+    App\EventListener\ExceptionListener:
+        arguments: ['@doctrine.orm.entity_manager', '@service_container', '@security.token_storage']
+        tags:
+            - { name: kernel.event_subscriber }
+
     App\Service\UserService:
         arguments: ['@doctrine.orm.entity_manager', '@service_container', '@security.token_storage']
 

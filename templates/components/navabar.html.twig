@@ -1,7 +1,7 @@
 <header id="home">
     <div class="row">
         <div class="col-4">
-            <img class="img-fluid ml-2" src="{{ asset('/build/images/logo-white.png') }}" width="70">
+            <img class="img-fluid ml-2" src="{% if enterprise %}{{ asset('uploads/images/' ~ enterprise.logo) }}{% else %}{{ asset('/build/images/logo-white.png') }}{% endif %}" width="70">
         </div>
         <div class="col-8">
 
@@ -28,7 +28,7 @@
                         </li>
                         {% if app.user and app.user.granted('ROLE_ADMIN') %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('enterprise_index') }}">Empresa</a>
+                                <a class="nav-link" href="{{ path('enterprise_index') }}">Enterprise</a>
                             </li>
                         {% endif %}
                         {% if app.user and app.user.granted('ROLE_ADMIN') %}

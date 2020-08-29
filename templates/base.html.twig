@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% set enterprise = app.session.get('enterprise') %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <meta name="description" content="Personal Page.">
     <meta name="author" content="Steller">
 
-    <title>{% block title %}Steller{% endblock %}</title>
+    <title>{% block title %}{% if enterprise %}{{ app.session.get('enterprise').name }}{% else %}Steller{% endif %}{% endblock %}</title>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
-    <link rel="icon" href="{{ asset('build/images/logo.png') }}" />
+    <link rel="icon"
+          href="{% if enterprise %}{{ asset('uploads/images/' ~ enterprise.logo) }}{% else %}{{ asset('build/images/logo.png') }}{% endif %}"/>
     <script src="https://kit.fontawesome.com/0f4db7f1e2.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -26,6 +28,14 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
     <script src="{{ asset('build/lib/jquery.min.js') }}"></script>
+    <script>
+        {% if enterprise %}
+            $('#home').css({"background": "{{ enterprise.color }}"});
+        {% else %}
+        $('#home').css({"background": "rgba(17, 207, 214, 0.5) url('/build/images/bg.jpg')"});
+        {% endif %}
+        console.log($('#home'))
+    </script>
 {% endblock %}
 </body>
 </html>
