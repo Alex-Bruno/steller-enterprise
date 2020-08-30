@@ -6,6 +6,7 @@ use App\Entity\Enterprise;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,6 +27,13 @@ class EnterpriseType extends AbstractType
                     'placeholder' => 'Enter a register',
                 ],
                 'label' => 'Register'
+            ])
+            ->add('email', EmailType::class, [
+                'label' => 'E-mail',
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Enter a e-mail',
+                ],
             ])
             ->add('logo', FileType::class,
                 [

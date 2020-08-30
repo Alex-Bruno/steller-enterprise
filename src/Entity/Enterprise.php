@@ -39,6 +39,11 @@ class Enterprise
     private $color;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
+
+    /**
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="App\Entity\Contact", cascade={"persist"})
      */
@@ -124,5 +129,22 @@ class Enterprise
     {
         $this->contacts = $contacts;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email): void
+    {
+        $this->email = $email;
+    }
+
 
 }

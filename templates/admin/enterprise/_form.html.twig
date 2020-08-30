@@ -16,6 +16,15 @@
         {{ form_errors(form.cnpj) }}
     </div>
 </div>
+
+<div class="row mb-2">
+    <div class="col {% if form.email.vars.errors|length %} has-error {% endif %}">
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+        {{ form_errors(form.email) }}
+    </div>
+</div>
+
 <div class="row mb-2">
     <div class="col {% if form.logo.vars.errors|length %} has-error {% endif %}">
         {{ form_label(form.logo) }}
@@ -23,6 +32,7 @@
         {{ form_errors(form.logo) }}
     </div>
 </div>
+
 <div class="row mb-2">
     <div class="col {% if form.color.vars.errors|length %} has-error {% endif %}">
         {{ form_label(form.color) }}

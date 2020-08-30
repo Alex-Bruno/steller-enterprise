@@ -1,0 +1,17 @@
+<html>
+<head>
+    <style>
+        h2 strong {
+            text-transform: capitalize!important;
+        }
+    </style>
+</head>
+<body>
+<h2><strong style="text-transform:capitalize!important;">{{ entity.name }}</strong> got in touch via Steller!</h2>
+<div class="row">
+    <strong>E-mail</strong> {{ entity.email }}<br/>
+    <strong>Phone</strong> {{ entity.phone }}<br/>
+    <strong>Subject</strong> {{ entity.text }}<br/>
+</div>
+</body>
+</html>

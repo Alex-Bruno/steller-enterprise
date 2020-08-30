@@ -27,6 +27,7 @@
                         <th>Id</th>
                         <th>Name</th>
                         <th>CNPJ</th>
+                        <th>E-mail</th>
                         <th>Logo</th>
                         <th>Color</th>
                         <th class="text-right">Actions</th>
@@ -38,6 +39,7 @@
                             <td>{{ enterprise.id }}</td>
                             <td>{{ enterprise.name }}</td>
                             <td>{{ enterprise.cnpj }}</td>
+                            <td>{{ enterprise.email }}</td>
                             <td><img src="{{ asset('uploads/images/' ~ enterprise.logo) }}" class="img-thumbnail" width="30" /></td>
                             <td><div style="width: 30px; height: 30px; background-color: {{ enterprise.color }}"></div></td>
                             <td>
